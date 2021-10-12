@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;400;600;900&display=swap" rel="stylesheet">
+	<style type="text/css">
+	html{font-family: 'Noto Serif KR', serif;}
+
+		.star{position: absolute;left: 0; top: 0;}
+		#geulText{z-index: 9;position: absolute; left: 50%; top: 900px; margin-bottom: 300px; font-size: 1.5rem;}
+		.word{opacity: 0; animation: fadein 3s forwards; animation-iteration-count: 1;}
+		@keyframes fadein{
+			to{opacity: 1;}
+		}
+
+		.main{
+			z-index: 9; margin:  auto; width:  100px; border: 0; align-content: center; padding-top: 150px;}
+	</style>
+	<script>//z-index는 순서 바꿔주는거
+			//fowrards는 끝나도 자리에 가만히 있는거</script>
+</head>
+<body>
+	<div class = "main">
+		<img class = "bookImg" id="cover" src="book2.jpg"; width="500px";>
+		<audio id="snd" src="bgm.mp3"></audio>
+		<style>
+			.book1Img{
+				padding-top: 300px;margin-left: 150px;
+			}
+		</style>
+		<script type="text/javascript">
+
+			var state = false;
+
+			cover.onclick = function(){
+				if (state){
+					snd.pause();
+					cover.src = "book2.jpg";
+					state = false;
+				} else {
+					snd.play();
+					cover.src = "book.jpg"
+					state = true;
+				}
+			}
+
+		</script>
+	</div>
+	<div class = "gT" id = "geulText"></div>
+	<style>
+		.gT{
+			padding-bottom: 300px;
+		}
+	</style>
+	<script type="text/javascript">
+		//한 변수 안에 나는 세가지를 다 넣겟다면 아래처럼 왜[]이걸 써야 먹히는지 모르겟지만 {}는 안먹힘
+
+		var geul = "너는 다시 태어나려고 기다리고 있어<br><br> 사랑하는 사람에 대한 생각<br> 나의 가난한 마음, 다시 읽는 책<br> 내게는 없지만 책에는 있는<br> 목소리와 시선을 빌려쓰는 글이다.<br><br> 나로는 안될 거 같을 때마다 책을 읽는다.<br> 엄청 자주 읽는다는 얘기다.<br> 그러고 나면 나는 미세하게 새로워진다.<br><br> 긴 산책을 갔다가 돌아왔을 때처럼<br> 현미경에 처음 눈을 댔을 때처럼<br> 낯선 나라의 결혼식을 구경했을 때처럼 <br>어제의 철새와 오늘의 철새가<br> 어떻게 다르게 울며 지나갔는지<br> 알아차릴 때처럼 <br> 커다란 창피를 당했을 때처럼 <br><br> 나는 사랑을 배우고 책을 읽으며 <br> 매일 조금씩 다시 태어난다.<br> 내일도 모래도 그럴 것이다.<br><br><br>";
+		var geulArray = geul.split("<br>");
+
+		var myTimer = setInterval(print,1000);
+		var s=0;
+		//0부터 시작하기 위해 변수값 s를 만들어주고 아래에 어레이에 s넣은거
+		function print(){
+			var t=document.createElement("span");
+			t.innerHTML = geulArray[s] + "<br>";
+			t.className = "word";
+			geulText.appendChild(t);
+			s++;
+
+			if(s == geulArray.length){
+				clearInterval(myTimer);
+			}
+		}
+
+		
+		for(var i=0;i<100;i++){
+			var t = document.createElement("img");
+		t.src = "star.png";
+		t.className =  "star";
+		t.style.width = randomBH(20,80) + "px";
+		t.style.height = "auto";
+		t.style.left = Math.random()*screen.availWidth + "px";
+		t.style.top = Math.random()*screen.availHeight + "px";
+		document.body.appendChild(t);
+
+		}
+
+		function randomBH(min, max) {
+  			min = Math.ceil(min);
+  			max = Math.floor(max);
+  			return Math.floor(Math.random() * (max - min + 1)) + min;
+  			}
+	</script>
+</body>
+</html>
